@@ -7,7 +7,7 @@
 - 代码清单：log4j.properties
 ```
 #设置日志的级别，定义日志信息的输出目的
-log4j.rootLogger=DEBUG, A1 ,R
+log4j.rootLogger=ERROR, A1 ,R
 #定义A1的输出目的地为控制台
 log4j.appender.A1=org.apache.log4j.ConsoleAppender
 #布局为 PatternLayout 可以灵活地指定布局模式。
