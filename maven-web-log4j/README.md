@@ -1,7 +1,7 @@
 # Maven JUnit log4j
 
 
-- 项目结构：
+- 项目结构：                                                                                                                                                                                                   
 ![](images/01_Project_Structure.png)
 
 - 代码清单：log4j.properties
