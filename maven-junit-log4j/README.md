@@ -157,6 +157,56 @@ public class AppTest extends TestCase {
 2019-01-07 11:09:41 [com.coderdream.maven_junit_log4j.AppTest]-[FATAL]  This is fatal!!!
 ```
 
+- 选中项目，点击右键，【Run as】-> 【Maven test】：
+```
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building maven-junit-log4j 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ maven-junit-log4j ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ maven-junit-log4j ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to D:\Java\GitHub\java-best-practice\maven-junit-log4j\target\classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ maven-junit-log4j ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory D:\Java\GitHub\java-best-practice\maven-junit-log4j\src\test\resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ maven-junit-log4j ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to D:\Java\GitHub\java-best-practice\maven-junit-log4j\target\test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ maven-junit-log4j ---
+[INFO] Surefire report directory: D:\Java\GitHub\java-best-practice\maven-junit-log4j\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.coderdream.maven_junit_log4j.AppTest
+2019-01-07 11:14:43 [com.coderdream.maven_junit_log4j.AppTest]-[ERROR]  This is error!!!
+2019-01-07 11:14:43 [com.coderdream.maven_junit_log4j.AppTest]-[FATAL]  This is fatal!!!
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.083 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 3.251 s
+[INFO] Finished at: 2019-01-07T11:14:43+08:00
+[INFO] Final Memory: 15M/166M
+[INFO] ------------------------------------------------------------------------
+
+```
+
+
 
 参考文档：
 1. [解决log4j.properties不起作用的问题](https://blog.csdn.net/l_degege/article/details/80201114)
