@@ -21,4 +21,4 @@
 ```
 
 - 参考网页：
-- [3-5 Hello Spring MVC](https://github.com/CoderDream/imooc-spring-mvc/releases/tag/v0.3.5)
+	1. [3-5 Hello Spring MVC](https://github.com/CoderDream/imooc-spring-mvc/releases/tag/v0.3.5)
