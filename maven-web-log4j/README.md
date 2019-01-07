@@ -1,4 +1,4 @@
-# Maven JUnit log4j
+# Maven Web JUnit log4j
 
 
 - 项目结构：                                                                                                                                                                                                   
@@ -33,10 +33,10 @@ log4j.appender.R.layout.ConversionPattern=%p %t %c - %m%n
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.coderdream</groupId>
-	<artifactId>maven-web-log4j</artifactId>
+	<artifactId>maven-spring-mvc-junit-log4j</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>maven-web-log4j Maven Webapp</name>
+	<name>maven-spring-mvc-junit-log4j Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
@@ -63,7 +63,7 @@ log4j.appender.R.layout.ConversionPattern=%p %t %c - %m%n
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>maven-web-log4j</finalName>
+		<finalName>maven-spring-mvc-junit-log4j</finalName>
 	</build>
 </project>
 
@@ -211,7 +211,7 @@ public class Log4JTestServlet extends HttpServlet {
 
 ```
 
-- 浏览器输入：http://localhost:8080/maven-web-log4j/test
+- 浏览器输入：http://localhost:8080/maven-spring-mvc-junit-log4j/test
 ![](images/02_Console_Info.png)
 
 
