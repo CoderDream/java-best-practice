@@ -211,4 +211,5 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 参考文档：
 1. [解决log4j.properties不起作用的问题](https://blog.csdn.net/l_degege/article/details/80201114)
 2. [搭建：Maven + log4j](https://blog.csdn.net/u010975589/article/details/80886133)
+3. [Maven学习三：使用junit测试maven project](https://blog.csdn.net/lfsfxy9/article/details/12201033)
 

@@ -69,62 +69,154 @@ log4j.appender.R.layout.ConversionPattern=%p %t %c - %m%n
 
 ```
 
-- 代码清单：Test.java（Java Application）
+- 代码清单：Log4JInitServlet.java
 ```java
 package com.coderdream;
 
-import org.apache.log4j.Logger;
+import java.io.File;
+import java.io.IOException;
 
-public class Test {
-	private static Logger logger = Logger.getLogger(Test.class);
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-	public static void main(String[] args) {
-		logger.debug(" This is debug!!!");
-		logger.info(" This is info!!!");
-		logger.warn(" This is warn!!!");
-		logger.error(" This is error!!!");
-		logger.fatal(" This is fatal!!!");
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.PropertyConfigurator;
+
+/**
+ * Servlet implementation class Log4JInitServlet
+ */
+@WebServlet("/Log4JInitServlet")
+public class Log4JInitServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public Log4JInitServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		System.out.println("Log4JInitServlet 正在初始化 log4j日志设置信息");
+		String log4jLocation = config.getInitParameter("log4j-properties-location");
+
+		ServletContext sc = config.getServletContext();
+
+		if (log4jLocation == null) {
+			System.err.println("*** 没有 log4j-properties-location 初始化的文件, 所以使用 BasicConfigurator初始化");
+			BasicConfigurator.configure();
+		} else {
+			String webAppPath = sc.getRealPath("/");
+			String log4jProp = webAppPath + log4jLocation;
+			File log4jFile = new File(log4jProp);
+			if (log4jFile.exists()) {
+				System.out.println("使用: " + log4jProp + "初始化日志设置信息");
+				PropertyConfigurator.configure(log4jProp);
+			} else {
+				System.err.println("*** " + log4jProp + " 文件没有找到， 所以使用 BasicConfigurator初始化");
+				BasicConfigurator.configure();
+			}
+		}
+		super.init(config);
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
 }
 ```
 
-- 输出结果：
-```
-2019-01-07 10:43:32 [com.coderdream.Test]-[ERROR]  This is error!!!
-2019-01-07 10:43:32 [com.coderdream.Test]-[FATAL]  This is fatal!!!
-```
-
-- 代码清单：TestLog.java（JUnit）
+- 代码清单：Log4JTestServlet.java
 ```java
 package com.coderdream;
 
-import org.junit.Test;
-import org.apache.log4j.Logger;
-
-public class TestLog {
-
-	private static Logger logger = Logger.getLogger(TestLog.class);
-
-	@Test
-	public void testHello() {
-		logger.debug(" This is debug!!!");
-		logger.info(" This is info!!!");
-		logger.warn(" This is warn!!!");
-		logger.error(" This is error!!!");
-		logger.fatal(" This is fatal!!!");
-	}
-
+import java.io.IOException;  
+ 
+import javax.servlet.ServletConfig;  
+import javax.servlet.ServletException;  
+import javax.servlet.annotation.WebServlet;  
+import javax.servlet.http.HttpServlet;  
+import javax.servlet.http.HttpServletRequest;  
+import javax.servlet.http.HttpServletResponse;  
+ 
+import org.apache.log4j.Logger;  
+ 
+/** 
+ * Servlet implementation class Log4JTestServlet 
+ */  
+@WebServlet("/Log4JTestServlet")  
+public class Log4JTestServlet extends HttpServlet {  
+    private static final long serialVersionUID = 1L;  
+    private static Logger logger = Logger.getLogger(Log4JTestServlet.class);    
+ 
+    /** 
+     * @see HttpServlet#HttpServlet() 
+     */  
+    public Log4JTestServlet() {  
+        super();  
+        // TODO Auto-generated constructor stub  
+    }  
+ 
+    /** 
+     * @see Servlet#init(ServletConfig) 
+     */  
+    public void init(ServletConfig config) throws ServletException {  
+        // TODO Auto-generated method stub  
+    }  
+ 
+    /** 
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response) 
+     */  
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {  
+        // 记录debug级别的信息    
+        logger.debug("This is debug message.");    
+        // 记录info级别的信息    
+        logger.info("This is info message.");    
+        // 记录error级别的信息    
+        logger.error("This is error message.");    
+    }  
+ 
+    /** 
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response) 
+     */  
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {  
+        doGet(request,response);  
+    }  
+ 
 }
+
 ```
 
-- 输出结果：
-```
-2019-01-07 10:43:55 [com.coderdream.TestLog]-[ERROR]  This is error!!!
-2019-01-07 10:43:55 [com.coderdream.TestLog]-[FATAL]  This is fatal!!!
-```
+- 浏览器输入：http://localhost:8080/maven-web-log4j/test
+![](images/02_Console_Info.png)
 
 
 参考文档：
 1. [解决log4j.properties不起作用的问题](https://blog.csdn.net/l_degege/article/details/80201114)
 2. [搭建：Maven + log4j](https://blog.csdn.net/u010975589/article/details/80886133)
+3. [Junit单元测试使用log4j输出日志](https://blog.csdn.net/qq_33458228/article/details/80810280)
 
